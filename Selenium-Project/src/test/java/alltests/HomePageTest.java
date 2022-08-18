@@ -2,25 +2,20 @@ package alltests;
 
 import browser.Browser;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
+@Listeners(value = TestListener.class)
+public class HomePageTest extends BaseTest {
 
-public class HomePageTest {
-    WebDriver driver;
-    @BeforeMethod
-    public void setUp() {
-        Browser.setDriver();
-        driver = Browser.getDriver();
-        driver.navigate().to(Browser.getPropertyValue("url"));
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-    }
     @Test
     public void test1(){
-        System.out.println("this is a test");
-        System.out.println("Making another");
+        startHomePage()
+                .registerUser().clickOpenAccountLink();
     }
+
+
 }
